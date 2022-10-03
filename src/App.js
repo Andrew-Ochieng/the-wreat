@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -14,7 +14,7 @@ import WasteManagement from './pages/WasteManagement';
 function App() {
   return (
     <div className="App">
-      <Router>
+      <BrowserRouter>
         <Navbar />
 
         <Routes>
@@ -28,7 +28,7 @@ function App() {
         </Routes>
 
         <Footer />
-      </Router>
+      </BrowserRouter>
 
     </div>
   );
