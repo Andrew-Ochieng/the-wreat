@@ -1,11 +1,29 @@
+import { useState, useEffect } from "react";
+
 const Home = () => {
-    return ( 
-        <>
-            <div>
-                Home Here
-            </div>
-        
-        </>
+    const [clean, setClean] = useState([])
+
+    useEffect(() => {
+        energyData()
+
+
+    }, [])
+
+    const energyData = () => {
+        const cleanApi = 'https://the-wreat-api.herokuapp.com/energy'
+        fetch(cleanApi)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+            })
+    }
+
+    return (
+        <div>
+            
+
+
+        </div>
      );
 }
  
