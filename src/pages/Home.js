@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
+import HomeCard from "../components/HomeCard";
 
 const Home = () => {
-    const [clean, setClean] = useState([])
+    const [energyBlogs, setEnergyBlogs] = useState([])
 
     useEffect(() => {
         energyData()
-
 
     }, [])
 
@@ -15,13 +15,14 @@ const Home = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data)
+                setEnergyBlogs(data)
             })
     }
 
     return (
         <div>
+             <HomeCard energyBlogs={energyBlogs} /> 
             
-
 
         </div>
      );
