@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import HomeCard from "../components/HomeCard";
+import BlogCard from "../components/BlogCard";
 
 const Home = () => {
     const [energyBlogs, setEnergyBlogs] = useState([])
@@ -21,7 +21,7 @@ const Home = () => {
 
     return (
         <div>
-             <HomeCard energyBlogs={energyBlogs} /> 
+             <BlogCard energyBlogs={energyBlogs} /> 
             
 
         </div>
