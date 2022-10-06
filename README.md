@@ -46,6 +46,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed! 
 
+<br>
+
 ```
     git@github.com:Andrew-Ochieng/the-wreat.git
 ```
@@ -64,7 +66,7 @@ Your app is ready to be deployed!
 [Github](https://github.com/Andrew-Ochieng)
 
 
-## Live GitHub Pages Link
+## Hosted Live Link
 
 [THE WREAT](https://thewreat.netlify.app/)
 
