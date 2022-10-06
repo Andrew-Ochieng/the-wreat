@@ -12,25 +12,37 @@ const BlogForm = () => {
     const addNewBlog = (e) => {
         e.preventDefault()
 
-        const postUrl = 'https://the-wreat-api.herokuapp.com/energy'
-        fetch(postUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                title: formData.title,
-                author: formData.author,
-                image_link: formData.image_link,
-                date: formData.date,
-                content: formData.content,
+        validateForm()
+    }
+
+    const validateForm = () => {
+        const {title, author, image_link, date, content} = formData
+
+        console.log({title, author, image_link, date, content})
+
+        if (formData !== "") {
+            const postUrl = 'https://the-wreat-api.herokuapp.com/energy'
+            fetch(postUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    title: formData.title,
+                    author: formData.author,
+                    image_link: formData.image_link,
+                    date: formData.date,
+                    content: formData.content,
+                })
             })
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-            setFormData(data)
-        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                setFormData(data)
+            })
+        } else {
+            alert("Please fill in all inputs!")
+        }
     }
 
     const handleInput = (e) => {
@@ -62,7 +74,7 @@ const BlogForm = () => {
                         <label className="md:text-xl font-medium" htmlFor="content">Content</label><br />
                         <textarea className="my-1 rounded-lg outline-none border-2 pl-2 pr-3 py-3 w-full" name="content" value={formData.content} onchange={handleInput} placeholder="Write Content.." cols="30" rows="6"></textarea>
                     </div>
-                    <input className="w-full py-3 bg-cyan-400 rounded-lg" type="submit" value="Add Blog" />
+                    <input className="w-full py-3 bg-cyan-400 rounded-lg cursor-pointer hover:bg-cyan-500 duration-200" type="submit" value="Add Blog" />
                 </form>
             </div>
             
