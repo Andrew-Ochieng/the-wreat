@@ -13,44 +13,34 @@ import WasteManagement from './pages/WasteManagement';
 
 
 function App() {
-  // receive data from api
-  const [energyBlogs, setEnergyBlogs] = useState([])
-  const [transportBlogs, setTransportBlogs] = useState([])
-  // const [agricultureBlogs, setAgricultureBlogs] = useState([])
-  // const [realEstateBlogs, setRealEstateBlogs] = useState([])
-  // const [wasteManagementBlogs, setWasteManagementBlogs] = useState([])
+  // fetch data from api
+  const [blogs, setBlogs] = useState([])
 
 
     useEffect(() => {
-        energyData()
-        transportData()
-        // agricultureData()
-        // realEstateData()
-        // wasteManagementData()
+        blogData()
 
     }, [])
 
-    const energyData = () => {
-        const energyApi = 'https://the-wreat-api.herokuapp.com/energy'
-        fetch(energyApi)
+    const blogData = () => {
+        const apiUrl = 'https://the-wreat-api.herokuapp.com/energy'
+        fetch(apiUrl)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data)
-                setEnergyBlogs(data)
+                setBlogs(data)
             })
             .catch((err) => console.log(err))
     }
 
-    const transportData = () => {
-      const transportApi = 'https://the-wreat-api.herokuapp.com/transport'
-      fetch(transportApi)
-          .then((res) => res.json())
-          .then((data) => {
-              console.log(data)
-              setTransportBlogs(data)
-          })
-          .catch((err) => console.log(err))
-    }
+    
+    const addBlogs = (blog) => {
+      setBlogs([...blogs, blog]);
+    };
+  
+
+    
+
 
 
   return (
@@ -59,13 +49,13 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path='/' element={ <Home energyBlogs={energyBlogs} /> }/>
-          <Route path='/energy' element={ <Energy /> } />
-          <Route path='/agriculture' element={ <Agriculture /> } />
-          <Route path='/Transport' element={ <Transport transportBlogs={transportBlogs}  /> } />
-          <Route path='/realestate' element={ <RealEstate /> } />
-          <Route path='/wastemanagement' element={ <WasteManagement /> } />
-          <Route path='/create' element={ <Create /> } />
+          <Route path='/' element={ <Home blogs={blogs} /> }/>
+          <Route path='/energy' element={ <Energy blogs={blogs} /> } />
+          <Route path='/agriculture' element={ <Agriculture blogs={blogs} /> } />
+          <Route path='/transport' element={ <Transport blogs={blogs}  /> } />
+          <Route path='/realestate' element={ <RealEstate blogs={blogs} /> } />
+          <Route path='/wastemanagement' element={ <WasteManagement blogs={blogs} /> } />
+          <Route path='/create' element={ <Create addBlogs={addBlogs} /> } />
         </Routes>
 
         <Footer />
