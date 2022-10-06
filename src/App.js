@@ -14,28 +14,41 @@ import WasteManagement from './pages/WasteManagement';
 
 function App() {
   // fetch data from api
-  const [blogs, setBlogs] = useState([])
+  const [energyData, setEnergyData] = useState([])
+  const [transportData, setTransportData] = useState([])
 
 
     useEffect(() => {
-        blogData()
+        showEnergyData()
+        showTransportData()
 
     }, [])
 
-    const blogData = () => {
-        const apiUrl = 'https://the-wreat-api.herokuapp.com/energy'
-        fetch(apiUrl)
+    const showEnergyData = () => {
+        const energyApi = 'https://the-wreat-api.herokuapp.com/energy'
+        fetch(energyApi)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data)
-                setBlogs(data)
+                setEnergyData(data)
             })
             .catch((err) => console.log(err))
     }
 
+    const showTransportData = () => {
+      const transportApi = 'https://the-wreat-api.herokuapp.com/transport'
+      fetch(transportApi)
+          .then((res) => res.json())
+          .then((data) => {
+              console.log(data)
+              setTransportData(data)
+          })
+          .catch((err) => console.log(err))
+  }
+
     
-    const addBlogs = (blog) => {
-      setBlogs([...blogs, blog]);
+    const addBlogs = (energy) => {
+      setEnergyData([...energyData, energy]);
     };
   
 
@@ -49,12 +62,12 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path='/' element={ <Home blogs={blogs} /> }/>
-          <Route path='/energy' element={ <Energy blogs={blogs} /> } />
-          <Route path='/agriculture' element={ <Agriculture blogs={blogs} /> } />
-          <Route path='/transport' element={ <Transport blogs={blogs}  /> } />
-          <Route path='/realestate' element={ <RealEstate blogs={blogs} /> } />
-          <Route path='/wastemanagement' element={ <WasteManagement blogs={blogs} /> } />
+          <Route path='/' element={ <Home energyData={energyData} transportData={transportData} /> }/>
+          <Route path='/energy' element={ <Energy energyData={energyData} /> } />
+          <Route path='/agriculture' element={ <Agriculture /> } />
+          <Route path='/transport' element={ <Transport transportData={transportData}  /> } />
+          <Route path='/realestate' element={ <RealEstate /> } />
+          <Route path='/wastemanagement' element={ <WasteManagement /> } />
           <Route path='/create' element={ <Create addBlogs={addBlogs} /> } />
         </Routes>
 

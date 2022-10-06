@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const BlogForm = () => {
+const BlogForm = ({addBlogs}) => {
     const [formData, setFormData] = useState({ 
         title: "", 
         author: "", 
@@ -16,33 +16,36 @@ const BlogForm = () => {
     }
 
     const validateForm = () => {
-        const {title, author, image_link, date, content} = formData
 
-        console.log({title, author, image_link, date, content})
+        // re-check form validation for individual input form-value !== ""
+        const postUrl = 'https://the-wreat-api.herokuapp.com/energy'
+        fetch(postUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title: formData.title,
+                author: formData.author,
+                image_link: formData.image_link,
+                date: formData.date,
+                content: formData.content,
+            })
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+            addBlogs(data)
+            setFormData({
+                title: "",
+                author: "",
+                image_link: "",
+                date: null,
+                content: "",
+            })
 
-        if (formData !== "") {
-            const postUrl = 'https://the-wreat-api.herokuapp.com/energy'
-            fetch(postUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    title: formData.title,
-                    author: formData.author,
-                    image_link: formData.image_link,
-                    date: formData.date,
-                    content: formData.content,
-                })
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data)
-                setFormData(data)
-            })
-        } else {
-            alert("Please fill in all inputs!")
-        }
+        })
+        .catch((err) => console.log(err))
     }
 
     const handleInput = (e) => {
