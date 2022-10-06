@@ -54,7 +54,7 @@ const BlogForm = ({addBlogs}) => {
     
 
     return ( 
-        <div className="md:mt-32 sm:mt-16 mt-8 mx-6">
+        <div className="md:my-32 sm:my-16 my-8 mx-6">
             <div className="flex justify-center items-center ">
                 <form action="#" method="post" onSubmit={addNewBlog}>
                     <div className="my-2">
