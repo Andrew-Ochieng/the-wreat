@@ -1,15 +1,15 @@
-import BlogCard from "../components/BlogCard";
+import EnergyCard from "../components/EnergyCard";
 
-const Energy = (energyData) => {
+const Energy = ({energyData}) => {
     return ( 
-        <div>
+        <div className="md:my-24 my-12 md:mx-16 mx-6">
             <div className="grid md:grid-cols-3 sm:grid-cols-2 md:gap-8 gap-4">
-                {
-                    energyData.map((energy) => {
-                            return <BlogCard energy={energy} />
-                    })
-                }
-            </div>
+               {
+                    energyData.map((energy) => (
+                         <EnergyCard energy={energy} />
+                    ))
+               }
+          </div>
         
         </div>
      );

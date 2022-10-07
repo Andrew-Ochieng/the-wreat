@@ -1,6 +1,6 @@
 // import { Link } from "react-router-dom";
 
-const BlogCard = ({ energy: {id, image_link, title, content_preview, author, content_link} }) => {
+const EnergyCard = ({ energy: {id, image_link, title, content_preview, author, content_link} }) => {
     // console.log(energy)
     
     return ( 
@@ -17,4 +17,4 @@ const BlogCard = ({ energy: {id, image_link, title, content_preview, author, con
      );
 }
  
-export default BlogCard;
+export default EnergyCard;
