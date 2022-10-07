@@ -75,7 +75,11 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path='/' element={ <Home energyData={energyData} transportData={transportData} /> }/>
+          <Route 
+            path='/' 
+            element={ <Home energyData={energyData} transportData={transportData} agricultureData={agricultureData} 
+            /> }
+          />
           <Route path='/energy' element={ <Energy energyData={energyData} /> } />
           <Route path='/agriculture' element={ <Agriculture agricultureData={agricultureData} /> } />
           <Route path='/transport' element={ <Transport transportData={transportData}  /> } />
