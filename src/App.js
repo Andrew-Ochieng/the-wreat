@@ -16,11 +16,13 @@ function App() {
   // fetch data from api
   const [energyData, setEnergyData] = useState([])
   const [transportData, setTransportData] = useState([])
+  const [agricultureData, setAricultureData] = useState([])
 
 
     useEffect(() => {
         showEnergyData()
         showTransportData()
+        showAgricultureData()
 
     }, [])
 
@@ -44,6 +46,17 @@ function App() {
               setTransportData(data)
           })
           .catch((err) => console.log(err))
+    }
+
+    const showAgricultureData = () => {
+      const agricultureApi = 'https://the-wreat-api.herokuapp.com/transport'
+      fetch(agricultureApi)
+          .then((res) => res.json())
+          .then((data) => {
+              console.log(data)
+              setAricultureData(data)
+          })
+          .catch((err) => console.log(err))
   }
 
     
@@ -64,7 +77,7 @@ function App() {
         <Routes>
           <Route path='/' element={ <Home energyData={energyData} transportData={transportData} /> }/>
           <Route path='/energy' element={ <Energy energyData={energyData} /> } />
-          <Route path='/agriculture' element={ <Agriculture /> } />
+          <Route path='/agriculture' element={ <Agriculture agricultureData={agricultureData} /> } />
           <Route path='/transport' element={ <Transport transportData={transportData}  /> } />
           <Route path='/realestate' element={ <RealEstate /> } />
           <Route path='/wastemanagement' element={ <WasteManagement /> } />

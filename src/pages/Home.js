@@ -1,7 +1,8 @@
 import EnergyCard from "../components/EnergyCard";
 import TransportCard from "../components/TransportCard"
+import AgricultureCard from "../components/AgricultureCard";
 
-const Home = ({ energyData, transportData }) => {
+const Home = ({ energyData, transportData, agricultureData }) => {
 //     console.log(energyData, transport)
 
 
@@ -19,6 +20,14 @@ const Home = ({ energyData, transportData }) => {
                {
                     transportData.map((transport) => (
                          <TransportCard transport={transport} />
+                    ))
+               }
+          </div>
+
+          <div className="grid md:grid-cols-3 sm:grid-cols-2 md:gap-8 gap-4 ">
+               {
+                    agricultureData.map((agriculture) => (
+                         <AgricultureCard agriculture={agriculture} />
                     ))
                }
           </div>
