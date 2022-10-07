@@ -65,6 +65,10 @@ Your app is ready to be deployed!
 [Twitter](https://twitter.com/drew_omosh) | 
 [Github](https://github.com/Andrew-Ochieng)
 
+## Hosted Api
+[THE-WREAT-API](https://the-wreat-api.herokuapp.com/)
+
+If you want to use a specified object you can add that at the end of the endpoint eg. for energy, it will be https://the-wreat-api.herokuapp.com/energy. There are five obects to choose from eg. energy, agriculture, transport, real-estate & waste-management.
 
 ## Hosted Live Link
 
