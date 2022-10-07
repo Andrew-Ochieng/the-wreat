@@ -1,6 +1,9 @@
+import Subscribe from "./Subscribe";
+
 const Footer = () => {
     return ( 
         <div>
+            <Subscribe />
             <footer className="bg-gray-900 ">
                 <div className="md:p-16 p-6 md:flex justify-around "> 
                     <div className="text-gray-100 space-y-2 md:my-0 my-6">
