@@ -40,6 +40,9 @@ const Navbar = () => {
                             <li className="md:mx-4 md:my-0 my-2 hover:text-gray-700">
                                 <Link to='/realestate'>Real Estate</Link>
                             </li>
+                            <li className="md:mx-4 md:my-0 my-2 hover:text-gray-700">
+                                <Link to='/wastemanagement'>Waste Management</Link>
+                            </li>
                             <li className="md:mx-4 md:my-0 my-3 hover:text-gray-700">
                                 <Link to='/create' className="bg-gray-700 hover:bg-green-700 duration-300 py-2 px-4 md:rounded-lg rounded-md">Create</Link>
                             </li>

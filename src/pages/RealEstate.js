@@ -2,7 +2,7 @@ const RealEstate = () => {
     return ( 
         <>
             <div>
-                RealEstate Here
+                Real Estate Here..
             </div>
         
         </>
