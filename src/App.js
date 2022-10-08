@@ -17,12 +17,15 @@ function App() {
   const [energyData, setEnergyData] = useState([])
   const [transportData, setTransportData] = useState([])
   const [agricultureData, setAricultureData] = useState([])
+  const [realEstateData, setRealEstateData] = useState([])
+
 
 
     useEffect(() => {
         showEnergyData()
         showTransportData()
         showAgricultureData()
+        showRealEstateData()
 
     }, [])
 
@@ -57,6 +60,17 @@ function App() {
               setAricultureData(data)
           })
           .catch((err) => console.log(err))
+    }
+
+    const showRealEstateData = () => {
+      const realEstateApi = 'https://the-wreat-api.herokuapp.com/real-estate'
+      fetch(realEstateApi)
+          .then((res) => res.json())
+          .then((data) => {
+              console.log(data)
+              setRealEstateData(data)
+          })
+          .catch((err) => console.log(err))
   }
 
     
@@ -83,7 +97,7 @@ function App() {
           <Route path='/energy' element={ <Energy energyData={energyData} /> } />
           <Route path='/agriculture' element={ <Agriculture agricultureData={agricultureData} /> } />
           <Route path='/transport' element={ <Transport transportData={transportData}  /> } />
-          <Route path='/realestate' element={ <RealEstate /> } />
+          <Route path='/realestate' element={ <RealEstate realEstateData={realEstateData} /> } />
           <Route path='/wastemanagement' element={ <WasteManagement /> } />
           <Route path='/create' element={ <Create addBlogs={addBlogs} /> } />
         </Routes>
