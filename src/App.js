@@ -18,6 +18,7 @@ function App() {
   const [transportData, setTransportData] = useState([])
   const [agricultureData, setAricultureData] = useState([])
   const [realEstateData, setRealEstateData] = useState([])
+  const [wasteManagementData, setWasteManagementData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
 
@@ -27,15 +28,14 @@ function App() {
         showTransportData()
         showAgricultureData()
         showRealEstateData()
+        showWasteManagementData()
 
     }, [])
 
     const showEnergyData = () => {
-        const energyApi = 'https://the-wreat-api.herokuapp.com/energy'
-        fetch(energyApi)
+        fetch('https://the-wreat-api.herokuapp.com/energy')
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
                 setEnergyData(data)
                 setIsLoading(false)
             })
@@ -46,11 +46,9 @@ function App() {
     }
 
     const showTransportData = () => {
-      const transportApi = 'https://the-wreat-api.herokuapp.com/transport'
-      fetch(transportApi)
+      fetch('https://the-wreat-api.herokuapp.com/transport')
           .then((res) => res.json())
           .then((data) => {
-              console.log(data)
               setTransportData(data)
               setIsLoading(false)
           })
@@ -61,11 +59,10 @@ function App() {
     }
 
     const showAgricultureData = () => {
-      const agricultureApi = 'https://the-wreat-api.herokuapp.com/transport'
-      fetch(agricultureApi)
+      fetch('https://the-wreat-api.herokuapp.com/agriculture')
           .then((res) => res.json())
           .then((data) => {
-            console.log(data)
+            setIsLoading(false)
             setAricultureData(data)
           })
           .catch((err) => {
@@ -75,18 +72,30 @@ function App() {
     }
 
     const showRealEstateData = () => {
-      const realEstateApi = 'https://the-wreat-api.herokuapp.com/real-estate'
-      fetch(realEstateApi)
+      fetch('https://the-wreat-api.herokuapp.com/real-estate')
           .then((res) => res.json())
           .then((data) => {
-              console.log(data)
-              setRealEstateData(data)
+            setIsLoading(false)
+            setRealEstateData(data)
           })
           .catch((err) => {
             setIsLoading(false)
             console.log(err)
           })
-  }
+    }
+
+    const showWasteManagementData = () => {
+      fetch('https://the-wreat-api.herokuapp.com/waste-management')
+          .then((res) => res.json())
+          .then((data) => {
+            setIsLoading(false)
+            setWasteManagementData(data)
+          })
+          .catch((err) => {
+            setIsLoading(false)
+            console.log(err)
+          })
+    }
 
     
     const addBlogs = (energy) => {
@@ -107,14 +116,20 @@ function App() {
         <Routes>
           <Route 
             path='/' 
-            element={ <Home energyData={energyData} transportData={transportData} agricultureData={agricultureData} 
-            /> }
+            element={ 
+              <Home 
+                energyData={energyData} 
+                transportData={transportData} 
+                agricultureData={agricultureData} 
+                realEstateData={realEstateData}
+                wasteManagementData={wasteManagementData}
+              /> }
           />
           <Route path='/energy' element={ <Energy energyData={energyData} /> } />
           <Route path='/agriculture' element={ <Agriculture agricultureData={agricultureData} /> } />
           <Route path='/transport' element={ <Transport transportData={transportData}  /> } />
           <Route path='/realestate' element={ <RealEstate realEstateData={realEstateData} /> } />
-          <Route path='/wastemanagement' element={ <WasteManagement /> } />
+          <Route path='/wastemanagement' element={ <WasteManagement wasteManagementData={wasteManagementData} /> } />
           <Route path='/create' element={ <Create addBlogs={addBlogs} /> } />
         </Routes>
 

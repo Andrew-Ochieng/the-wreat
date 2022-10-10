@@ -11,8 +11,6 @@ const EnergyCard = ({ transport: {id, image_link, title, content_preview, author
             <h3 className="text-green-500">{author}</h3>
         </div>
 
-        
-
      );
 }
  
