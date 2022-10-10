@@ -18,6 +18,7 @@ function App() {
   const [transportData, setTransportData] = useState([])
   const [agricultureData, setAricultureData] = useState([])
   const [realEstateData, setRealEstateData] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
 
 
@@ -36,8 +37,12 @@ function App() {
             .then((data) => {
                 console.log(data)
                 setEnergyData(data)
+                setIsLoading(false)
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+              setIsLoading(false)
+              console.log(err)
+          })
     }
 
     const showTransportData = () => {
@@ -47,8 +52,12 @@ function App() {
           .then((data) => {
               console.log(data)
               setTransportData(data)
+              setIsLoading(false)
           })
-          .catch((err) => console.log(err))
+          .catch((err) => {
+            setIsLoading(false)
+            console.log(err)
+          })
     }
 
     const showAgricultureData = () => {
@@ -56,10 +65,13 @@ function App() {
       fetch(agricultureApi)
           .then((res) => res.json())
           .then((data) => {
-              console.log(data)
-              setAricultureData(data)
+            console.log(data)
+            setAricultureData(data)
           })
-          .catch((err) => console.log(err))
+          .catch((err) => {
+            setIsLoading(false)
+            console.log(err)
+          })
     }
 
     const showRealEstateData = () => {
@@ -70,7 +82,10 @@ function App() {
               console.log(data)
               setRealEstateData(data)
           })
-          .catch((err) => console.log(err))
+          .catch((err) => {
+            setIsLoading(false)
+            console.log(err)
+          })
   }
 
     
@@ -87,6 +102,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
+        {isLoading && <h3 className='text-red-500 font-semibold md:text-4xl text-2xl md:mx-6 mx-4 my-4'>Page is Loading...</h3>}
 
         <Routes>
           <Route 
